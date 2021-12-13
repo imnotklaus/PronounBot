@@ -34,7 +34,7 @@ message.reply('You must specify all arguments! (e.g. `Bob they them their theirs
 return;}
 
         message.reply(`Have you met **${name}**? 
-        • I think **${subject}** is very nice
+        • I think **${subject}** is/are very nice
         • I asked **${object}** if I could borrow **${pd}** pencil
         • **${subject}** told me that the house is **${pp}**
         • **${subject}** said **${subject}** would rather do it **${reflexive}**`);
