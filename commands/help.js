@@ -1,5 +1,10 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
 module.exports = {
-    name: "help",
-    run: (client, message, args) => {
-        message.channel.send("To try on some pronouns, type: ```pronouns try [name] [object] [subject] [possessive determiner] [possessive pronoun] [reflexive]``` If you dont know what this means, an example would be: ```pronouns try Bob He Him His His Himelf```");
-}}
+	data: new SlashCommandBuilder()
+		.setName('help')
+		.setDescription('Get info on how the bot works!'),
+	async execute(interaction) {
+		await interaction.reply('Hi! Thanks for using Pronoun Bot! To get started, simply type `/try` and fill out the required fields! A description is provided with each field in case you don\'t know what some of the words mean! For more info on pronouns, I suggest you check out https://en.pronouns.page!');
+	},
+};

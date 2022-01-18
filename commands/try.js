@@ -1,42 +1,58 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
-name: "try",
-run: (client, message, args) => {
-let [name, subject, object, pd, pp, reflexive] = args;
+	data: new SlashCommandBuilder()
+		.setName('try')
+		.setDescription('Try out pronouns!')
 
+        .addStringOption((o) => 
+          o.setRequired(true)
+          .setName('name')
+          .setDescription('Name youd like to try'))
 
-const noargs = args[0];
-if(!noargs) {
-message.reply('You must specify all arguments! (e.g. `Bob they them their theirs themselves`)');
-return;}
+          .addStringOption((o) => 
+             o.setRequired(true)
+             .setName('object')
+             .setDescription('e.g. "they"'))
 
-const oneargs = args[1];
-if(!oneargs) {
-message.reply('You must specify all arguments! (e.g. `Bob they them their theirs themselves`)');
-return;}
+             .addStringOption((o) => 
+                o.setRequired(true)
+                .setName('subject')
+                .setDescription('e.g. "them"'))
 
-const twoargs = args[2];
-if(!twoargs) {
-message.reply('You must specify all arguments! (e.g. `Bob they them their theirs themselves`)');
-return;}
+                .addStringOption((o) => 
+                  o.setRequired(true)
+                  .setName('possessive-determiner')
+                  .setDescription('e.g. "their"'))
 
-const threeargs = args[3];
-if(!threeargs) {
-message.reply('You must specify all arguments! (e.g. `Bob they them their theirs themselves`)');
-return;}
+                  .addStringOption((o) => 
+                     o.setRequired(true)
+                     .setName('possessive-pronoun')
+                     .setDescription('e.g. "theirs"'))
 
-const fourargs = args[4]
-if(!fourargs) {
-message.reply('You must specify all arguments! (e.g. `Bob they them their theirs themselves`)')
-return;}
+                     .addStringOption((o) => 
+                        o.setRequired(true)
+                        .setName('reflexive')
+                        .setDescription('e.g. "themself"')),
+                        
+          async execute (interaction) {
+            let string = interaction.options.getString('name')
+            string = string.toLowerCase()
+            const newString = string.split('')
+            newString[0] = newString[0].toLocaleUpperCase()
+            string = newString.join('')
 
-const fiveargs = args[5]
-if(!fiveargs) {
-message.reply('You must specify all arguments! (e.g. `Bob they them their theirs themselves`)')
-return;}
+            const name = interaction.options.getString('name')
+            const object = interaction.options.getString('object')
+            const subject = interaction.options.getString('subject')
+            const pd = interaction.options.getString('possessivedeterminer')
+            const pp = interaction.options.getString('possessivepronoun')
+            const ref = interaction.options.getString('reflexive')
 
-        message.reply(`Have you met **${name}**? 
-        • I think **${subject}** is/are very nice
-        • I asked **${object}** if I could borrow **${pd}** pencil
-        • **${subject}** told me that the house is **${pp}**
-        • **${subject}** said **${subject}** would rather do it **${reflexive}**`);
-}};
+            await interaction.reply(`Have you met **${name}**? 
+            • I think **${object}** is/are very nice
+            • I asked **${subject}** if I could borrow **${pd}** pencil
+            • **${object}** told me that the house is **${pp}**
+            • **${object}** said **${object}** would rather do it **${ref}**`);
+            }
+            
+	};
