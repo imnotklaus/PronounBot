@@ -44,8 +44,8 @@ module.exports = {
             const name = interaction.options.getString('name')
             const object = interaction.options.getString('object')
             const subject = interaction.options.getString('subject')
-            const pd = interaction.options.getString('possessivedeterminer')
-            const pp = interaction.options.getString('possessivepronoun')
+            const pd = interaction.options.getString('possessive-determiner')
+            const pp = interaction.options.getString('possessive-pronoun')
             const ref = interaction.options.getString('reflexive')
 
             await interaction.reply(`Have you met **${name}**? 
