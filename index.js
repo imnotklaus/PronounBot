@@ -13,7 +13,7 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log(`Ready to serve in ${client.guilds.cache.size} servers!`);
 });
 
 client.on('interactionCreate', async interaction => {
